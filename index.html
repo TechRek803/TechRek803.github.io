@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Samuel Trisnadi | Mechanical Engineer & Hardware Systems Developer</title>
 <meta name="description" content="Portfolio of Samuel Trisnadi: mechanical engineering, robotics, electric powertrains and rapid prototyping.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,13 +46,27 @@ a{color:inherit}
 ul.log{list-style:none;padding:0}
 ul.log li{position:relative;padding-left:1.2rem;margin:.35rem 0;color:#c4cad6;font-size:.88rem}
 ul.log li::before{content:"";position:absolute;left:0;top:.7em;width:6px;height:6px;background:var(--green)}
-.rail{display:flex;gap:1.25rem;overflow-x:auto;padding:.5rem .25rem 1.25rem;cursor:grab;scrollbar-width:thin;scrollbar-color:var(--blue) #0d1424}
+.rail{display:grid;grid-auto-flow:column;grid-template-rows:repeat(2,auto);grid-auto-columns:min(460px,86vw);gap:1.25rem;overflow-x:auto;padding:1rem .25rem 1.5rem;cursor:grab;scrollbar-width:thin;scrollbar-color:var(--blue) #0d1424}
+.rail.one{grid-template-rows:auto}
 .rail.drag{cursor:grabbing;user-select:none}
-.card{flex:0 0 min(340px,82vw)}
+.card{min-width:0}
+.card h3{font-size:1.2rem}.card p{font-size:.95rem}.card .p-4{padding:1.25rem}
 .ph{position:relative;aspect-ratio:16/10;background:linear-gradient(135deg,var(--navy),#060b18);border-bottom:1px solid var(--line);overflow:hidden}
 .ph img{width:100%;height:100%;object-fit:cover;display:block}
-.card:hover{border-color:var(--blue-hi)}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.dot{animation:none}}
+.card{cursor:pointer;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.card:hover,.card:focus-visible{transform:translateY(-8px);border-color:var(--blue-hi);box-shadow:0 16px 32px rgba(59,123,255,.28)}
+dialog{background:transparent;border:0;padding:0;margin:auto;width:min(880px,94vw);max-height:92vh;color:var(--txt)}
+dialog::backdrop{background:rgba(0,0,0,.8);backdrop-filter:blur(3px)}
+.pm-in{background:#0a1226;padding:1.5rem;max-height:92vh;overflow-y:auto}
+.pm-x{position:sticky;top:0;float:right;font-size:1.8rem;line-height:1;color:var(--mut);background:#0a1226;padding:0 .25rem}
+.pm-x:hover{color:var(--green)}
+.vid{display:block;object-fit:cover;width:100%;aspect-ratio:16/9;border:0;margin-top:1.25rem}
+.gal{columns:2 240px;column-gap:.75rem;margin-top:1.25rem}
+.gal:empty{display:none}
+.gal a{display:block;margin-bottom:.75rem;border:1px solid var(--line)}
+.gal img{width:100%;display:block}
+body.lock{overflow:hidden}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.dot{animation:none}.card{transition:none}.card:hover,.card:focus-visible{transform:none}}
 </style>
 </head>
 <body>
@@ -79,8 +94,8 @@ ul.log li::before{content:"";position:absolute;left:0;top:.7em;width:6px;height:
       </div>
     </div>
     <div class="flex md:justify-end">
-      <div class="panel brk photo" data-l="Drop your photo here as profile.jpg">
-        <img src="profile.jpg" alt="Profile Placeholder" onerror="this.style.display='none';this.parentElement.classList.add('noimg')">
+      <div class="panel brk photo" data-l="Drop your photo here as profile.webp">
+        <img src="profile.webp" alt="Profile Placeholder" onerror="this.style.display='none';this.parentElement.classList.add('noimg')">
       </div>
     </div>
   </div>
@@ -107,55 +122,87 @@ ul.log li::before{content:"";position:absolute;left:0;top:.7em;width:6px;height:
 <section id="projects">
   <div class="wrap">
     <h2 class="sec">Projects</h2>
-    <p class="mut text-sm mb-4">Scroll or drag sideways to browse, newest first.</p>
+    <p class="mut text-sm mb-4">Scroll or drag sideways to browse, newest first. Click a project for more info.</p>
   </div>
   <div class="wrap">
     <div class="rail" id="rail" tabindex="0" aria-label="Project gallery, scrolls horizontally">
 
-      <article class="card panel"><div class="ph" data-l="project-dbf.jpg"><img src="project-dbf.jpg" alt="Design Build Fly RC plane payload" draggable="false" onerror="bad(this)"></div>
+      <article class="card panel" tabindex="0" role="button" aria-haspopup="dialog" data-folder="projects/dbf" data-yt="" data-long=""><div class="ph" data-l="project-dbf.webp"><img src="project-dbf.webp" alt="Design Build Fly RC plane payload" draggable="false" onerror="bad(this)"></div>
         <div class="p-4"><span class="yr">2026 - Present</span><h3 class="font-extrabold mt-3">Design Build Fly Competition RC Plane</h3>
         <p class="text-sm text-gray-300 mt-2">Payload design, electrical systems, and powertrain for a competition RC aircraft.</p>
         <div class="mt-3"><span class="chip">Payload</span><span class="chip">Electrical</span><span class="chip">Powertrain</span></div></div></article>
 
-      <article class="card panel"><div class="ph" data-l="project-dcdc.jpg"><img src="project-dcdc.jpg" alt="Formula Electric DC-DC converter" draggable="false" onerror="bad(this)"></div>
+      <article class="card panel" tabindex="0" role="button" aria-haspopup="dialog" data-folder="projects/dcdc" data-yt="" data-long=""><div class="ph" data-l="project-dcdc.webp"><img src="project-dcdc.webp" alt="Formula Electric DC-DC converter" draggable="false" onerror="bad(this)"></div>
         <div class="p-4"><span class="yr">2026</span><h3 class="font-extrabold mt-3">Formula Electric DC-DC Converter</h3>
         <p class="text-sm text-gray-300 mt-2">DC-DC converter work for a Formula Electric race car's low-voltage systems.</p>
         <div class="mt-3"><span class="chip">Power electronics</span><span class="chip">Formula Electric</span></div></div></article>
 
-      <article class="card panel"><div class="ph" data-l="project-sim.jpg"><img src="project-sim.jpg" alt="Racing simulator" draggable="false" onerror="bad(this)"></div>
+      <article class="card panel" tabindex="0" role="button" aria-haspopup="dialog" data-folder="projects/sim" data-yt="" data-long=""><div class="ph" data-l="project-sim.webp"><img src="project-sim.webp" alt="Racing simulator" draggable="false" onerror="bad(this)"></div>
         <div class="p-4"><span class="yr">2026</span><h3 class="font-extrabold mt-3">Racing Simulator</h3>
         <p class="text-sm text-gray-300 mt-2">A hardware-driven racing simulator built around a custom frame and electronics.</p>
         <div class="mt-3"><span class="chip">Hardware</span><span class="chip">Fabrication</span><span class="chip">Electronics</span></div></div></article>
 
-      <article class="card panel"><div class="ph" data-l="project-euc.jpg"><img src="project-euc.jpg" alt="Electric unicycle" draggable="false" onerror="bad(this)"></div>
+      <article class="card panel" tabindex="0" role="button" aria-haspopup="dialog" data-folder="projects/euc" data-yt="" data-long=""><div class="ph" data-l="project-euc.webp"><img src="project-euc.webp" alt="Electric unicycle" draggable="false" onerror="bad(this)"></div>
         <div class="p-4"><span class="yr">2025</span><h3 class="font-extrabold mt-3">Electric Unicycle</h3>
         <p class="text-sm text-gray-300 mt-2">Electric unicycle project covering the powertrain, battery, and diagnostics.</p>
         <div class="mt-3"><span class="chip">Electric powertrain</span><span class="chip">Diagnostics</span></div></div></article>
 
-      <article class="card panel"><div class="ph" data-l="project-projection.jpg"><img src="project-projection.jpg" alt="Projection mapping" draggable="false" onerror="bad(this)"></div>
+      <article class="card panel" tabindex="0" role="button" aria-haspopup="dialog" data-folder="projects/projection" data-yt="" data-long=""><div class="ph" data-l="project-projection.webp"><img src="project-projection.webp" alt="Projection mapping" draggable="false" onerror="bad(this)"></div>
         <div class="p-4"><span class="yr">2022</span><h3 class="font-extrabold mt-3">Projection Mapping</h3>
         <p class="text-sm text-gray-300 mt-2">Projected video mapped onto physical surfaces and objects.</p>
         <div class="mt-3"><span class="chip">Projection</span><span class="chip">Video</span></div></div></article>
 
-      <article class="card panel"><div class="ph" data-l="project-3dprint.jpg"><img src="project-3dprint.jpg" alt="Tronxy X5SA 3D printer customization" draggable="false" onerror="bad(this)"></div>
+      <article class="card panel" tabindex="0" role="button" aria-haspopup="dialog" data-folder="projects/3dprint" data-yt="" data-long=""><div class="ph" data-l="project-3dprint.webp"><img src="project-3dprint.webp" alt="Tronxy X5SA 3D printer customization" draggable="false" onerror="bad(this)"></div>
         <div class="p-4"><span class="yr">2021 - Present</span><h3 class="font-extrabold mt-3">Advanced FDM 3D Printing / Tronxy-X5SA Customization</h3>
         <p class="text-sm text-gray-300 mt-2">Hardware and firmware upgrades to a Tronxy X5SA, running Marlin and Klipper.</p>
         <div class="mt-3"><span class="chip">FDM</span><span class="chip">Marlin</span><span class="chip">Klipper</span></div></div></article>
 
-      <article class="card panel"><div class="ph" data-l="project-trike.jpg"><img src="project-trike.jpg" alt="Electric drift trike" draggable="false" onerror="bad(this)"></div>
+      <article class="card panel" tabindex="0" role="button" aria-haspopup="dialog" data-folder="projects/trike" data-yt="" data-long=""><div class="ph" data-l="project-trike.webp"><img src="project-trike.webp" alt="Electric drift trike" draggable="false" onerror="bad(this)"></div>
         <div class="p-4"><span class="yr">2021</span><h3 class="font-extrabold mt-3">Electric Drift Trike</h3>
         <p class="text-sm text-gray-300 mt-2">A custom-built electric drift trike with its own powertrain and frame.</p>
         <div class="mt-3"><span class="chip">Electric vehicle</span><span class="chip">Fabrication</span></div></div></article>
 
-      <article class="card panel"><div class="ph" data-l="project-waterslide.jpg"><img src="project-waterslide.jpg" alt="Custom waterslide design" draggable="false" onerror="bad(this)"></div>
-        <div class="p-4"><span class="yr">2020</span><h3 class="font-extrabold mt-3">Custom Waterslide Design</h3>
-        <p class="text-sm text-gray-300 mt-2">A custom waterslide designed from concept through build.</p>
+      <article class="card panel" tabindex="0" role="button" aria-haspopup="dialog" data-folder="projects/waterslide" data-yt="oJce4GrqdFg" data-long="Short version of a custom waterslide build. A longer, complete build video with a guide to building your own is coming soon."><div class="ph" data-l="project-waterslide.webp"><img src="project-waterslide.webp" alt="Custom waterslide build" draggable="false" onerror="bad(this)"></div>
+        <div class="p-4"><span class="yr">2020</span><h3 class="font-extrabold mt-3">Custom Waterslide Build</h3>
+        <p class="text-sm text-gray-300 mt-2">Short version of a custom waterslide build. The full build video and a guide to making your own are coming soon.</p>
         <div class="mt-3"><span class="chip">Design</span><span class="chip">Structures</span></div></div></article>
 
-      <article class="card panel"><div class="ph" data-l="project-suspension.jpg"><img src="project-suspension.jpg" alt="Custom suspension linkages for EVs" draggable="false" onerror="bad(this)"></div>
+      <article class="card panel" tabindex="0" role="button" aria-haspopup="dialog" data-folder="projects/suspension" data-yt="" data-long=""><div class="ph" data-l="project-suspension.webp"><img src="project-suspension.webp" alt="Custom suspension linkages for EVs" draggable="false" onerror="bad(this)"></div>
         <div class="p-4"><span class="yr">Personal Project</span><h3 class="font-extrabold mt-3">Custom Suspension Linkages for EVs</h3>
         <p class="text-sm text-gray-300 mt-2">Suspension linkage designs for electric vehicles, modeled in CAD.</p>
         <div class="mt-3"><span class="chip">Suspension</span><span class="chip">CAD</span><span class="chip">EV</span></div></div></article>
+
+    </div>
+  </div>
+</section>
+
+<section id="scouts">
+  <div class="wrap">
+    <h2 class="sec">Boy Scouts</h2>
+    <p class="mut text-sm mb-4">Scroll or drag sideways to browse. Click a card for more info.</p>
+  </div>
+  <div class="wrap">
+    <div class="rail one" id="rail-scouts" tabindex="0" aria-label="Scouting gallery, scrolls horizontally">
+
+      <article class="card panel" tabindex="0" role="button" aria-haspopup="dialog" data-folder="scouts/eagle" data-yt="" data-long=""><div class="ph" data-l="scout-eagle.webp"><img src="scout-eagle.webp" alt="Eagle Scout award" draggable="false" onerror="bad(this)"></div>
+        <div class="p-4"><span class="yr">Troop 357</span><h3 class="font-extrabold mt-3">Eagle Scout Award</h3>
+        <p class="text-sm text-gray-300 mt-2">Earned the rank of Eagle Scout, the highest rank in Scouts BSA, with Troop 357.</p>
+        <div class="mt-3"><span class="chip">Eagle Scout</span><span class="chip">Troop 357</span></div></div></article>
+
+      <article class="card panel" tabindex="0" role="button" aria-haspopup="dialog" data-folder="scouts/eagle-project" data-yt="" data-long=""><div class="ph" data-l="scout-project.webp"><img src="scout-project.webp" alt="Eagle project at Gould Mesa Campground" draggable="false" onerror="bad(this)"></div>
+        <div class="p-4"><span class="yr">Eagle project</span><h3 class="font-extrabold mt-3">Gould Mesa Campground Restoration</h3>
+        <p class="text-sm text-gray-300 mt-2">Planned and led the restoration of the Gould Mesa Campground for my Eagle Scout rank.</p>
+        <div class="mt-3"><span class="chip">Service</span><span class="chip">Project management</span><span class="chip">Leadership</span></div></div></article>
+
+      <article class="card panel" tabindex="0" role="button" aria-haspopup="dialog" data-folder="scouts/minnesota" data-yt="4DFGXQSXU78" data-long="Troop 357 trip to Northern Tier in Minnesota. 10 days, June 18 – 28, 2022, in the Boundary Waters Canoe Area Wilderness (BWCAW). The video follows the trip day by day."><div class="ph" data-l="scout-minnesota.webp"><img src="scout-minnesota.webp" alt="Troop 357 Northern Tier trip in the Boundary Waters" draggable="false" onerror="bad(this)"></div>
+        <div class="p-4"><span class="yr">Jun 18 – 28, 2022</span><h3 class="font-extrabold mt-3">Northern Tier: Boundary Waters Trip</h3>
+        <p class="text-sm text-gray-300 mt-2">10-day Troop 357 trip to Northern Tier in Minnesota, in the Boundary Waters Canoe Area Wilderness.</p>
+        <div class="mt-3"><span class="chip">Northern Tier</span><span class="chip">BWCAW</span><span class="chip">Troop 357</span></div></div></article>
+
+      <article class="card panel" tabindex="0" role="button" aria-haspopup="dialog" data-folder="scouts/leadership" data-yt="" data-long=""><div class="ph" data-l="scout-leadership.webp"><img src="scout-leadership.webp" alt="Troop 357 leadership" draggable="false" onerror="bad(this)"></div>
+        <div class="p-4"><span class="yr">2017 – 2022</span><h3 class="font-extrabold mt-3">Troop 357 Leadership</h3>
+        <p class="text-sm text-gray-300 mt-2">Served as Assistant Senior Patrol Leader, Patrol Leader, and Quartermaster.</p>
+        <div class="mt-3"><span class="chip">Leadership</span><span class="chip">Equipment management</span></div></div></article>
 
     </div>
   </div>
@@ -217,6 +264,18 @@ ul.log li::before{content:"";position:absolute;left:0;top:.7em;width:6px;height:
 </section>
 </main>
 
+<dialog id="pm" aria-labelledby="pm-t">
+  <div class="pm-in panel">
+    <button class="pm-x" id="pm-x" type="button" aria-label="Close project details">&times;</button>
+    <span class="yr" id="pm-y"></span>
+    <h3 class="font-extrabold text-2xl mt-3" id="pm-t"></h3>
+    <div class="mt-2" id="pm-tags"></div>
+    <p class="text-gray-300 mt-4" id="pm-d"></p>
+    <div id="pm-v"></div>
+    <div class="gal" id="pm-g"></div>
+  </div>
+</dialog>
+
 <script>
 function bad(i){i.style.display='none';i.parentElement.classList.add('noimg')}
 
@@ -262,18 +321,56 @@ function bad(i){i.style.display='none';i.parentElement.classList.add('noimg')}
 
 /* Project rail: wheel-to-horizontal and mouse drag */
 (()=>{
-  const r=document.getElementById('rail');
+  document.querySelectorAll('.rail').forEach(r=>{
   r.addEventListener('wheel',e=>{
     if(Math.abs(e.deltaX)>Math.abs(e.deltaY))return;
     const max=r.scrollWidth-r.clientWidth,up=e.deltaY<0;
     if((!up&&r.scrollLeft<max-1)||(up&&r.scrollLeft>1)){e.preventDefault();r.scrollLeft+=e.deltaY}
   },{passive:false});
-  let down=false,sx=0,sl=0;
-  r.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse')return;down=true;sx=e.clientX;sl=r.scrollLeft;r.classList.add('drag')});
-  addEventListener('pointermove',e=>{if(down)r.scrollLeft=sl-(e.clientX-sx)});
+  let down=false,sx=0,sl=0,moved=0;
+  r.addEventListener('pointerdown',e=>{moved=0;if(e.pointerType!=='mouse')return;down=true;sx=e.clientX;sl=r.scrollLeft;r.classList.add('drag')});
+  addEventListener('pointermove',e=>{if(down){moved=Math.max(moved,Math.abs(e.clientX-sx));r.scrollLeft=sl-(e.clientX-sx)}});
+  r.addEventListener('click',e=>{const c=e.target.closest('.card');if(c&&moved<6)openProject(c)});
   addEventListener('pointerup',()=>{down=false;r.classList.remove('drag')});
-  r.addEventListener('keydown',e=>{if(e.key==='ArrowRight')r.scrollLeft+=300;if(e.key==='ArrowLeft')r.scrollLeft-=300});
+  r.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.classList.contains('card')){e.preventDefault();openProject(e.target)}if(e.key==='ArrowRight')r.scrollLeft+=300;if(e.key==='ArrowLeft')r.scrollLeft-=300});
+});
 })();
+
+/* Project details modal */
+const REPO='TechRek803/TechRek803.github.io',cache={};let tok=0;
+const pm=document.getElementById('pm'),$=id=>document.getElementById(id);
+async function photos(f){
+  if(!f)return[];
+  if(cache[f])return cache[f];
+  try{
+    const r=await fetch(`https://api.github.com/repos/${REPO}/contents/${f}`);
+    if(!r.ok)return[];
+    return cache[f]=(await r.json()).filter(x=>/\.(webp|jpe?g|png|gif|avif)$/i.test(x.name))
+      .sort((a,b)=>a.name.localeCompare(b.name,undefined,{numeric:true})).map(x=>`${f}/${encodeURIComponent(x.name)}`);
+  }catch(_){return[]}
+}
+async function openProject(c){
+  const t=++tok,title=c.querySelector('h3').textContent;
+  $('pm-y').textContent=c.querySelector('.yr').textContent;
+  $('pm-t').textContent=title;
+  $('pm-tags').innerHTML=c.querySelector('.chip').parentElement.innerHTML;
+  $('pm-d').textContent=c.dataset.long||c.querySelector('p').textContent;
+  const yt=(c.dataset.yt||'').match(/[\w-]{11}/);
+  const web=/^https?:$/.test(location.protocol);
+  $('pm-v').innerHTML=yt?(web
+    ?`<iframe class="vid" src="https://www.youtube-nocookie.com/embed/${yt[0]}" title="${title} video" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>`
+    :`<a href="https://youtu.be/${yt[0]}" target="_blank" rel="noopener"><img class="vid" src="https://i.ytimg.com/vi/${yt[0]}/hqdefault.jpg" alt="${title} video thumbnail"></a>`)
+    +`<p class="mt-3"><a class="btn btn-ghost" href="https://youtu.be/${yt[0]}" target="_blank" rel="noopener">Watch on YouTube</a></p>`:'';
+  $('pm-g').innerHTML='';
+  pm.querySelector('.pm-in').scrollTop=0;
+  pm.showModal();document.body.classList.add('lock');
+  const list=await photos(c.dataset.folder);
+  if(t!==tok||!pm.open)return;
+  $('pm-g').innerHTML=list.map((u,i)=>`<a href="${u}" target="_blank" rel="noopener"><img src="${u}" alt="${title} photo ${i+1}" loading="lazy"></a>`).join('');
+}
+$('pm-x').onclick=()=>pm.close();
+pm.addEventListener('click',e=>{if(e.target===pm)pm.close()});
+pm.addEventListener('close',()=>{$('pm-v').innerHTML='';document.body.classList.remove('lock')});
 </script>
 </body>
 </html>
