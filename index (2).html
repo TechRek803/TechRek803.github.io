@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Samuel Trisnadi | Mechanical Engineer & Hardware Systems Developer</title>
+<meta name="description" content="Portfolio of Samuel Trisnadi: mechanical engineering, robotics, electric powertrains and rapid prototyping.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<style>
+:root{--bg:#0a0a0a;--panel:rgba(9,16,34,.78);--blue:#1a56db;--blue-hi:#3b7bff;--navy:#0b1f4d;--green:#1fdc7a;--line:#16254a;--txt:#f5f7fa;--mut:#8b95a7}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{background:var(--bg);color:var(--txt);font-family:'JetBrains Mono',ui-monospace,Menlo,monospace;line-height:1.65;-webkit-font-smoothing:antialiased}
+h1,h2,h3,.hd{font-family:'Orbitron','Segoe UI',system-ui,sans-serif;letter-spacing:.02em}
+#bg{position:fixed;inset:0;width:100%;height:100%;z-index:0}
+.layer{position:relative;z-index:1}
+.wrap{max-width:1120px;margin:0 auto;padding:0 1.25rem}
+section{padding:4.5rem 0}
+.sec{font-size:clamp(1.4rem,3.2vw,2rem);font-weight:800;display:flex;align-items:center;gap:1rem;margin-bottom:2rem}
+.sec::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--blue),transparent)}
+.panel{background:var(--panel);border:1px solid var(--line);backdrop-filter:blur(6px);position:relative}
+.brk::before,.brk::after{content:"";position:absolute;width:16px;height:16px;border:2px solid var(--green);pointer-events:none}
+.brk::before{top:-1px;left:-1px;border-right:0;border-bottom:0}
+.brk::after{bottom:-1px;right:-1px;border-left:0;border-top:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--green);outline-offset:3px}
+.nav{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(10,10,10,.82);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav a{color:var(--mut);text-decoration:none;font-size:.75rem;transition:color .2s}
+.nav a:hover{color:var(--green)}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.35}}
+.btn{display:inline-block;padding:.8rem 1.6rem;font-weight:500;font-size:.9rem;text-decoration:none;border:1px solid var(--blue);transition:.2s}
+.btn-solid{background:var(--blue);color:#fff}
+.btn-solid:hover{background:var(--blue-hi);box-shadow:0 0 22px rgba(59,123,255,.5)}
+.btn-ghost{color:var(--green);border-color:var(--green);background:transparent}
+.btn-ghost:hover{background:rgba(31,220,122,.1);box-shadow:0 0 18px rgba(31,220,122,.3)}
+.photo{width:min(300px,70vw);aspect-ratio:4/5;background:linear-gradient(160deg,var(--navy),#060b18);overflow:hidden;display:grid;place-items:center}
+.photo img{width:100%;height:100%;object-fit:cover}
+.noimg::after{content:attr(data-l);position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:1rem;color:var(--mut);font-size:.75rem}
+.mut{color:var(--mut)}
+.chip{display:inline-block;font-size:.72rem;padding:.15rem .6rem;border:1px solid rgba(31,220,122,.4);color:var(--green);margin:.2rem .3rem .2rem 0}
+.yr{display:inline-block;font-size:.72rem;padding:.1rem .6rem;background:var(--navy);color:#9db8ff;border-left:3px solid var(--green)}
+ul.log{list-style:none;padding:0}
+ul.log li{position:relative;padding-left:1.2rem;margin:.35rem 0;color:#c4cad6;font-size:.88rem}
+ul.log li::before{content:"";position:absolute;left:0;top:.7em;width:6px;height:6px;background:var(--green)}
+.rail{display:flex;gap:1.25rem;overflow-x:auto;padding:.5rem .25rem 1.25rem;cursor:grab;scrollbar-width:thin;scrollbar-color:var(--blue) #0d1424}
+.rail.drag{cursor:grabbing;user-select:none}
+.card{flex:0 0 min(340px,82vw)}
+.ph{position:relative;aspect-ratio:16/10;background:linear-gradient(135deg,var(--navy),#060b18);border-bottom:1px solid var(--line);overflow:hidden}
+.ph img{width:100%;height:100%;object-fit:cover;display:block}
+.card:hover{border-color:var(--blue-hi)}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.dot{animation:none}}
+</style>
+</head>
+<body>
+<canvas id="bg" aria-hidden="true"></canvas>
+
+<nav class="nav" aria-label="Primary">
+  <div class="wrap flex items-center justify-between h-14">
+    <a href="#top" class="hd font-extrabold text-white flex items-center gap-2"><span class="dot"></span><span class="hidden sm:inline">S. Trisnadi</span></a>
+    <div class="flex gap-3 sm:gap-6">
+      <a href="#details">About</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#education">Education</a><a href="#skills">Skills</a>
+    </div>
+  </div>
+</nav>
+
+<main class="layer">
+<header id="top" class="min-h-screen flex items-center pt-20 pb-10">
+  <div class="wrap w-full grid md:grid-cols-[1.4fr_1fr] gap-10 items-center">
+    <div>
+      <p class="text-sm mb-4" style="color:var(--green)"><span class="dot mr-2"></span>Systems online. Open to internships and collaborations.</p>
+      <h1 class="font-extrabold leading-[1.02] text-5xl sm:text-6xl lg:text-7xl">Samuel<br>Trisnadi</h1>
+      <p class="mt-5 text-lg sm:text-xl text-gray-300">Mechanical Engineer &amp; Hardware Systems Developer</p>
+      <div class="mt-8 flex flex-wrap gap-4">
+        <a href="#details" class="btn btn-solid">More Info</a>
+        <a href="#projects" class="btn btn-ghost">Projects</a>
+      </div>
+    </div>
+    <div class="flex md:justify-end">
+      <div class="panel brk photo" data-l="Drop your photo here as profile.jpg">
+        <img src="profile.jpg" alt="Profile Placeholder" onerror="this.style.display='none';this.parentElement.classList.add('noimg')">
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="details">
+  <div class="wrap">
+    <h2 class="sec">Summary &amp; contact</h2>
+    <div class="grid md:grid-cols-[1.5fr_1fr] gap-6">
+      <div class="panel brk p-6">
+        <p class="text-gray-300">Mechanical Engineering student with strong electrical and software understanding, hands-on experience in robotics, 3D printing, rapid prototyping, diagnostics, and teaching. Eagle Scout, FRC robotics leader, and robotics instructor.</p>
+      </div>
+      <address class="panel p-6 not-italic text-sm space-y-2 break-words">
+        <p><span class="mut">Phone</span><br><a href="tel:+16262543526">(626) 254-3526</a></p>
+        <p><span class="mut">Email</span><br><a href="mailto:samueltrisnadi@gmail.com">samueltrisnadi@gmail.com</a></p>
+        <p><span class="mut">Location</span><br>Temple City, CA</p>
+        <p><span class="mut">LinkedIn</span><br><a style="color:var(--green)" href="https://linkedin.com/in/samuel-trisnadi-6a59532a4/" target="_blank" rel="noopener">linkedin.com/in/samuel-trisnadi-6a59532a4/</a></p>
+      </address>
+    </div>
+
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <h2 class="sec">Projects</h2>
+    <p class="mut text-sm mb-4">Scroll or drag sideways to browse, newest first.</p>
+  </div>
+  <div class="wrap">
+    <div class="rail" id="rail" tabindex="0" aria-label="Project gallery, scrolls horizontally">
+
+      <article class="card panel"><div class="ph" data-l="project-dbf.jpg"><img src="project-dbf.jpg" alt="Design Build Fly RC plane payload" draggable="false" onerror="bad(this)"></div>
+        <div class="p-4"><span class="yr">2026 - Present</span><h3 class="font-extrabold mt-3">Design Build Fly Competition RC Plane</h3>
+        <p class="text-sm text-gray-300 mt-2">Payload design, electrical systems, and powertrain for a competition RC aircraft.</p>
+        <div class="mt-3"><span class="chip">Payload</span><span class="chip">Electrical</span><span class="chip">Powertrain</span></div></div></article>
+
+      <article class="card panel"><div class="ph" data-l="project-dcdc.jpg"><img src="project-dcdc.jpg" alt="Formula Electric DC-DC converter" draggable="false" onerror="bad(this)"></div>
+        <div class="p-4"><span class="yr">2026</span><h3 class="font-extrabold mt-3">Formula Electric DC-DC Converter</h3>
+        <p class="text-sm text-gray-300 mt-2">DC-DC converter work for a Formula Electric race car's low-voltage systems.</p>
+        <div class="mt-3"><span class="chip">Power electronics</span><span class="chip">Formula Electric</span></div></div></article>
+
+      <article class="card panel"><div class="ph" data-l="project-sim.jpg"><img src="project-sim.jpg" alt="Racing simulator" draggable="false" onerror="bad(this)"></div>
+        <div class="p-4"><span class="yr">2026</span><h3 class="font-extrabold mt-3">Racing Simulator</h3>
+        <p class="text-sm text-gray-300 mt-2">A hardware-driven racing simulator built around a custom frame and electronics.</p>
+        <div class="mt-3"><span class="chip">Hardware</span><span class="chip">Fabrication</span><span class="chip">Electronics</span></div></div></article>
+
+      <article class="card panel"><div class="ph" data-l="project-euc.jpg"><img src="project-euc.jpg" alt="Electric unicycle" draggable="false" onerror="bad(this)"></div>
+        <div class="p-4"><span class="yr">2025</span><h3 class="font-extrabold mt-3">Electric Unicycle</h3>
+        <p class="text-sm text-gray-300 mt-2">Electric unicycle project covering the powertrain, battery, and diagnostics.</p>
+        <div class="mt-3"><span class="chip">Electric powertrain</span><span class="chip">Diagnostics</span></div></div></article>
+
+      <article class="card panel"><div class="ph" data-l="project-projection.jpg"><img src="project-projection.jpg" alt="Projection mapping" draggable="false" onerror="bad(this)"></div>
+        <div class="p-4"><span class="yr">2022</span><h3 class="font-extrabold mt-3">Projection Mapping</h3>
+        <p class="text-sm text-gray-300 mt-2">Projected video mapped onto physical surfaces and objects.</p>
+        <div class="mt-3"><span class="chip">Projection</span><span class="chip">Video</span></div></div></article>
+
+      <article class="card panel"><div class="ph" data-l="project-3dprint.jpg"><img src="project-3dprint.jpg" alt="Tronxy X5SA 3D printer customization" draggable="false" onerror="bad(this)"></div>
+        <div class="p-4"><span class="yr">2021 - Present</span><h3 class="font-extrabold mt-3">Advanced FDM 3D Printing / Tronxy-X5SA Customization</h3>
+        <p class="text-sm text-gray-300 mt-2">Hardware and firmware upgrades to a Tronxy X5SA, running Marlin and Klipper.</p>
+        <div class="mt-3"><span class="chip">FDM</span><span class="chip">Marlin</span><span class="chip">Klipper</span></div></div></article>
+
+      <article class="card panel"><div class="ph" data-l="project-trike.jpg"><img src="project-trike.jpg" alt="Electric drift trike" draggable="false" onerror="bad(this)"></div>
+        <div class="p-4"><span class="yr">2021</span><h3 class="font-extrabold mt-3">Electric Drift Trike</h3>
+        <p class="text-sm text-gray-300 mt-2">A custom-built electric drift trike with its own powertrain and frame.</p>
+        <div class="mt-3"><span class="chip">Electric vehicle</span><span class="chip">Fabrication</span></div></div></article>
+
+      <article class="card panel"><div class="ph" data-l="project-waterslide.jpg"><img src="project-waterslide.jpg" alt="Custom waterslide design" draggable="false" onerror="bad(this)"></div>
+        <div class="p-4"><span class="yr">2020</span><h3 class="font-extrabold mt-3">Custom Waterslide Design</h3>
+        <p class="text-sm text-gray-300 mt-2">A custom waterslide designed from concept through build.</p>
+        <div class="mt-3"><span class="chip">Design</span><span class="chip">Structures</span></div></div></article>
+
+      <article class="card panel"><div class="ph" data-l="project-suspension.jpg"><img src="project-suspension.jpg" alt="Custom suspension linkages for EVs" draggable="false" onerror="bad(this)"></div>
+        <div class="p-4"><span class="yr">Personal Project</span><h3 class="font-extrabold mt-3">Custom Suspension Linkages for EVs</h3>
+        <p class="text-sm text-gray-300 mt-2">Suspension linkage designs for electric vehicles, modeled in CAD.</p>
+        <div class="mt-3"><span class="chip">Suspension</span><span class="chip">CAD</span><span class="chip">EV</span></div></div></article>
+
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <h2 class="sec">Engineering experience &amp; leadership</h2>
+    <div class="grid md:grid-cols-2 gap-5">
+      <article class="panel brk p-6">
+        <span class="yr">Aug 2026 - Present</span>
+        <h3 class="text-lg font-extrabold mt-3">RoboThink STEM Teacher</h3>
+        <p class="text-sm text-gray-300 mt-2">Teach after-school robotics STEM curriculum to students ages 5–14.</p>
+      </article>
+      <article class="panel brk p-6">
+        <span class="yr">2020 – 2024</span>
+        <h3 class="text-lg font-extrabold mt-3">Titanium Robotics (FIRST Robotics Competition)</h3>
+        <p class="text-sm mut">Vice President, Mechanical Captain, Strategy Captain</p>
+        <ul class="log mt-2"><li>Managed design and build teams.</li><li>Authored 100+ pages of technical documentation.</li><li>Led FDM 3D printing (Marlin/Klipper) and electrical diagnostics.</li></ul>
+      </article>
+      <article class="panel brk p-6">
+        <span class="yr">Feb – Mar 2024</span>
+        <h3 class="text-lg font-extrabold mt-3">Metro Transportation Career Academy</h3>
+        <p class="text-sm text-gray-300 mt-2">1st place in a multi-disciplinary sustainable city streets challenge.</p>
+      </article>
+      <article class="panel brk p-6">
+        <span class="yr">2017 – 2022</span>
+        <h3 class="text-lg font-extrabold mt-3">Eagle Scout, Troop 357</h3>
+        <ul class="log mt-2"><li>Gould Mesa Campground restoration project.</li><li>Assistant Senior Patrol Leader, Patrol Leader, and Quartermaster.</li></ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <h2 class="sec">Education</h2>
+    <ol class="panel p-6 space-y-4" style="list-style:none">
+      <li class="flex flex-wrap justify-between gap-1"><span><b>California State Polytechnic University, Pomona</b> <span class="mut">Mechanical Engineering</span></span><span class="yr">2026 - Present</span></li>
+      <li class="flex flex-wrap justify-between gap-1"><b>Cuesta Community College</b><span class="yr">2025 - 2026</span></li>
+      <li class="flex flex-wrap justify-between gap-1"><b>Pasadena City College</b><span class="yr">2024 - 2025</span></li>
+      <li class="flex flex-wrap justify-between gap-1"><b>San Marino High School</b><span class="yr">2020 - 2024</span></li>
+    </ol>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <h2 class="sec">Skills</h2>
+    <div class="grid md:grid-cols-3 gap-5">
+      <div class="panel p-6"><h3 class="font-extrabold mb-3">Technical</h3>
+        <span class="chip">Electrical Soldering</span><span class="chip">Mechanical/Electrical Repair</span><span class="chip">FDM 3D Printing</span><span class="chip">Electric Powertrain Systems</span></div>
+      <div class="panel p-6"><h3 class="font-extrabold mb-3">Software</h3>
+        <span class="chip">SolidWorks</span><span class="chip">Fusion 360</span><span class="chip">TinkerCad</span><span class="chip">DaVinci Resolve</span><span class="chip">Microsoft Windows / Office Suite</span></div>
+      <div class="panel p-6"><h3 class="font-extrabold mb-3">Programming / AI</h3>
+        <span class="chip">Java</span><span class="chip">LM Studio</span><span class="chip">ComfyUI</span><span class="chip">Google Gemini</span><span class="chip">Claude</span></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<script>
+function bad(i){i.style.display='none';i.parentElement.classList.add('noimg')}
+
+/* Interactive network background */
+(()=>{
+  const c=document.getElementById('bg'),g=c.getContext('2d'),m={x:-9999,y:-9999};
+  const still=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  let W,H,P=[];
+  function size(){
+    const d=window.devicePixelRatio||1;W=innerWidth;H=innerHeight;
+    c.width=W*d;c.height=H*d;g.setTransform(d,0,0,d,0,0);
+    const n=Math.min(120,Math.floor(W*H/13000));
+    P=Array.from({length:n},()=>{const bx=(Math.random()-.5)*.4,by=(Math.random()-.5)*.4;
+      return{x:Math.random()*W,y:Math.random()*H,bx,by,vx:bx,vy:by,r:Math.random()*1.4+.7}});
+  }
+  addEventListener('resize',size);
+  addEventListener('pointermove',e=>{m.x=e.clientX;m.y=e.clientY});
+  addEventListener('pointerleave',()=>{m.x=m.y=-9999});
+  function frame(){
+    g.clearRect(0,0,W,H);
+    for(const p of P){
+      const dx=p.x-m.x,dy=p.y-m.y,d=Math.hypot(dx,dy);
+      if(d<150&&d>0){const f=(150-d)/150;p.vx+=dx/d*f*.12;p.vy+=dy/d*f*.12}
+      p.vx+=(p.bx-p.vx)*.04;p.vy+=(p.by-p.vy)*.04;
+      if(!still){p.x+=p.vx/3;p.y+=p.vy/3}
+      if(p.x<-10)p.x=W+10;else if(p.x>W+10)p.x=-10;
+      if(p.y<-10)p.y=H+10;else if(p.y>H+10)p.y=-10;
+    }
+    for(let i=0;i<P.length;i++){
+      const a=P[i];
+      for(let j=i+1;j<P.length;j++){
+        const b=P[j],d=Math.hypot(a.x-b.x,a.y-b.y);
+        if(d<130){g.strokeStyle=`rgba(59,123,255,${(1-d/130)*.35})`;g.lineWidth=.8;g.beginPath();g.moveTo(a.x,a.y);g.lineTo(b.x,b.y);g.stroke()}
+      }
+      const dm=Math.hypot(a.x-m.x,a.y-m.y);
+      if(dm<180){g.strokeStyle=`rgba(31,220,122,${(1-dm/180)*.6})`;g.lineWidth=1;g.beginPath();g.moveTo(a.x,a.y);g.lineTo(m.x,m.y);g.stroke()}
+      g.fillStyle='rgba(31,220,122,.75)';g.beginPath();g.arc(a.x,a.y,a.r,0,6.283);g.fill();
+    }
+    requestAnimationFrame(frame);
+  }
+  size();frame();
+})();
+
+/* Project rail: wheel-to-horizontal and mouse drag */
+(()=>{
+  const r=document.getElementById('rail');
+  r.addEventListener('wheel',e=>{
+    if(Math.abs(e.deltaX)>Math.abs(e.deltaY))return;
+    const max=r.scrollWidth-r.clientWidth,up=e.deltaY<0;
+    if((!up&&r.scrollLeft<max-1)||(up&&r.scrollLeft>1)){e.preventDefault();r.scrollLeft+=e.deltaY}
+  },{passive:false});
+  let down=false,sx=0,sl=0;
+  r.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse')return;down=true;sx=e.clientX;sl=r.scrollLeft;r.classList.add('drag')});
+  addEventListener('pointermove',e=>{if(down)r.scrollLeft=sl-(e.clientX-sx)});
+  addEventListener('pointerup',()=>{down=false;r.classList.remove('drag')});
+  r.addEventListener('keydown',e=>{if(e.key==='ArrowRight')r.scrollLeft+=300;if(e.key==='ArrowLeft')r.scrollLeft-=300});
+})();
+</script>
+</body>
+</html>
