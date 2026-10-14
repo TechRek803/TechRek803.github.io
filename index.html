@@ -65,6 +65,8 @@ dialog::backdrop{background:rgba(0,0,0,.8);backdrop-filter:blur(3px)}
 .gal a{display:block;margin-bottom:.75rem;border:1px solid var(--line)}
 .gal img{width:100%;display:block}
 body.lock{overflow:hidden}
+.lnk{color:var(--green);text-decoration:underline;text-underline-offset:3px}
+.lnk:hover{color:#fff}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.dot{animation:none}.card{transition:none}.card:hover,.card:focus-visible{transform:none}}
 </style>
 </head>
@@ -105,13 +107,13 @@ body.lock{overflow:hidden}
     <h2 class="sec">Summary &amp; contact</h2>
     <div class="grid md:grid-cols-[1.5fr_1fr] gap-6">
       <div class="panel brk p-6">
-        <p class="text-gray-300">Mechanical Engineering student with strong electrical and software understanding, hands-on experience in robotics, 3D printing, rapid prototyping, diagnostics, and teaching. Eagle Scout, FRC robotics leader, and robotics instructor.</p>
+        <p class="text-gray-300 text-lg">A Mechanical Engineering student but also has strong electrical understanding and experience as well as programming proven through his many projects over the years. Through this involvement in Boy Scouts of America to achieve the Eagle Scout Rank and FIRST Robotics in high school he continues through his College Clubs and work as a Robotics Instructor.</p>
       </div>
       <address class="panel p-6 not-italic text-sm space-y-2 break-words">
-        <p><span class="mut">Phone</span><br><a href="tel:+16262543526">(626) 254-3526</a></p>
-        <p><span class="mut">Email</span><br><a href="mailto:samueltrisnadi@gmail.com">samueltrisnadi@gmail.com</a></p>
+        <p><span class="mut">Phone</span><br><a class="lnk" href="tel:+16262543526">(626) 254-3526</a></p>
+        <p><span class="mut">Email</span><br><a class="lnk" href="mailto:samueltrisnadi@gmail.com">samueltrisnadi@gmail.com</a></p>
         <p><span class="mut">Location</span><br>Temple City, CA</p>
-        <p><span class="mut">LinkedIn</span><br><a style="color:var(--green)" href="https://linkedin.com/in/samuel-trisnadi-6a59532a4/" target="_blank" rel="noopener">linkedin.com/in/samuel-trisnadi-6a59532a4/</a></p>
+        <p><span class="mut">LinkedIn</span><br><a class="lnk" href="https://linkedin.com/in/samuel-trisnadi-6a59532a4/" target="_blank" rel="noopener">linkedin.com/in/samuel-trisnadi-6a59532a4/</a></p>
       </address>
     </div>
 
@@ -175,6 +177,33 @@ body.lock{overflow:hidden}
   </div>
 </section>
 
+
+
+<section id="experience">
+  <div class="wrap">
+    <h2 class="sec">Engineering experience &amp; leadership</h2>
+    <p class="mut text-sm mb-4">Click a card for more info.</p>
+    <div class="grid md:grid-cols-3 gap-5">
+      <article class="card xp panel brk p-6" tabindex="0" role="button" aria-haspopup="dialog" data-folder="experience/robothink" data-yt="" data-long="Teach after-school robotics STEM curriculum to students ages 5–14.">
+        <span class="yr">Aug 2026 - Present</span>
+        <h3 class="text-lg font-extrabold mt-3">RoboThink STEM Teacher</h3>
+        <p class="text-sm text-gray-300 mt-2">Teach after-school robotics STEM curriculum to students ages 5–14.</p>
+      </article>
+      <article class="card xp panel brk p-6" tabindex="0" role="button" aria-haspopup="dialog" data-folder="experience/titanium" data-yt="" data-long="Vice President, Mechanical Captain, and Strategy Captain. Managed design and build teams, authored 100+ pages of technical documentation, and led FDM 3D printing (Marlin/Klipper) and electrical diagnostics.">
+        <span class="yr">2020 – 2024</span>
+        <h3 class="text-lg font-extrabold mt-3">Titanium Robotics (FIRST Robotics Competition)</h3>
+        <p class="text-sm mut">Vice President, Mechanical Captain, Strategy Captain</p>
+        <ul class="log mt-2"><li>Managed design and build teams.</li><li>Authored 100+ pages of technical documentation.</li><li>Led FDM 3D printing (Marlin/Klipper) and electrical diagnostics.</li></ul>
+      </article>
+      <article class="card xp panel brk p-6" tabindex="0" role="button" aria-haspopup="dialog" data-folder="experience/metro" data-yt="" data-long="1st place in a multi-disciplinary sustainable city streets challenge.">
+        <span class="yr">Feb – Mar 2024</span>
+        <h3 class="text-lg font-extrabold mt-3">Metro Transportation Career Academy</h3>
+        <p class="text-sm text-gray-300 mt-2">1st place in a multi-disciplinary sustainable city streets challenge.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
 <section id="scouts">
   <div class="wrap">
     <h2 class="sec">Boy Scouts</h2>
@@ -203,35 +232,6 @@ body.lock{overflow:hidden}
         <p class="text-sm text-gray-300 mt-2">Served as Assistant Senior Patrol Leader, Patrol Leader, and Quartermaster.</p>
         <div class="mt-3"><span class="chip">Leadership</span><span class="chip">Equipment management</span></div></div></article>
 
-    </div>
-  </div>
-</section>
-
-<section id="experience">
-  <div class="wrap">
-    <h2 class="sec">Engineering experience &amp; leadership</h2>
-    <div class="grid md:grid-cols-2 gap-5">
-      <article class="panel brk p-6">
-        <span class="yr">Aug 2026 - Present</span>
-        <h3 class="text-lg font-extrabold mt-3">RoboThink STEM Teacher</h3>
-        <p class="text-sm text-gray-300 mt-2">Teach after-school robotics STEM curriculum to students ages 5–14.</p>
-      </article>
-      <article class="panel brk p-6">
-        <span class="yr">2020 – 2024</span>
-        <h3 class="text-lg font-extrabold mt-3">Titanium Robotics (FIRST Robotics Competition)</h3>
-        <p class="text-sm mut">Vice President, Mechanical Captain, Strategy Captain</p>
-        <ul class="log mt-2"><li>Managed design and build teams.</li><li>Authored 100+ pages of technical documentation.</li><li>Led FDM 3D printing (Marlin/Klipper) and electrical diagnostics.</li></ul>
-      </article>
-      <article class="panel brk p-6">
-        <span class="yr">Feb – Mar 2024</span>
-        <h3 class="text-lg font-extrabold mt-3">Metro Transportation Career Academy</h3>
-        <p class="text-sm text-gray-300 mt-2">1st place in a multi-disciplinary sustainable city streets challenge.</p>
-      </article>
-      <article class="panel brk p-6">
-        <span class="yr">2017 – 2022</span>
-        <h3 class="text-lg font-extrabold mt-3">Eagle Scout, Troop 357</h3>
-        <ul class="log mt-2"><li>Gould Mesa Campground restoration project.</li><li>Assistant Senior Patrol Leader, Patrol Leader, and Quartermaster.</li></ul>
-      </article>
     </div>
   </div>
 </section>
@@ -352,7 +352,7 @@ async function openProject(c){
   const t=++tok,title=c.querySelector('h3').textContent;
   $('pm-y').textContent=c.querySelector('.yr').textContent;
   $('pm-t').textContent=title;
-  $('pm-tags').innerHTML=c.querySelector('.chip').parentElement.innerHTML;
+  const ch=c.querySelector('.chip');$('pm-tags').innerHTML=ch?ch.parentElement.innerHTML:'';
   $('pm-d').textContent=c.dataset.long||c.querySelector('p').textContent;
   const yt=(c.dataset.yt||'').match(/[\w-]{11}/);
   const web=/^https?:$/.test(location.protocol);
@@ -367,6 +367,7 @@ async function openProject(c){
   if(t!==tok||!pm.open)return;
   $('pm-g').innerHTML=list.map((u,i)=>`<a href="${u}" target="_blank" rel="noopener"><img src="${u}" alt="${title} photo ${i+1}" loading="lazy"></a>`).join('');
 }
+document.querySelectorAll('.xp').forEach(c=>{c.addEventListener('click',()=>openProject(c));c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openProject(c)}})});
 $('pm-x').onclick=()=>pm.close();
 pm.addEventListener('click',e=>{if(e.target===pm)pm.close()});
 pm.addEventListener('close',()=>{$('pm-v').innerHTML='';document.body.classList.remove('lock')});
