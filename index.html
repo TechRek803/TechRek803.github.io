@@ -148,9 +148,9 @@ body.lock{overflow:hidden}
         <p class="text-sm text-gray-300 mt-2">Robotics systems, mechanisms, and hardware integration.</p>
         <div class="mt-3"><span class="chip">Robotics</span><span class="chip">Hardware</span></div></div></article>
 
-      <article class="card panel" tabindex="0" role="button" aria-haspopup="dialog" data-folder="photos/segway" data-yt="" data-long=""><div class="ph" data-l="Image pending"><img src="photos/segway/cover.webp" alt="Segway project" draggable="false" onerror="bad(this)"></div>
+      <article class="card panel" tabindex="0" role="button" aria-haspopup="dialog" data-folder="photos/segway" data-yt="" data-long="An experimental self-balancing transport build that ultimately proved to be a failed project, serving as a valuable learning experience in control loops and mechanical dynamics."><div class="ph" data-l="Image pending"><img src="photos/segway/cover.webp" alt="Segway project" draggable="false" onerror="bad(this)"></div>
         <div class="p-4"><span class="yr">2023</span><h3 class="font-extrabold mt-3">Segway</h3>
-        <p class="text-sm text-gray-300 mt-2">Self-balancing two-wheeled transport vehicle mechanics and control.</p>
+        <p class="text-sm text-gray-300 mt-2">Self-balancing two-wheeled transport vehicle mechanics and control (failed project).</p>
         <div class="mt-3"><span class="chip">Robotics</span><span class="chip">Control</span></div></div></article>
 
       <article class="card panel" tabindex="0" role="button" aria-haspopup="dialog" data-folder="photos/euc" data-yt="" data-long=""><div class="ph" data-l="Image pending"><img src="photos/euc/cover.webp" alt="Electric unicycle" draggable="false" onerror="bad(this)"></div>
@@ -183,9 +183,9 @@ body.lock{overflow:hidden}
         <p class="text-sm text-gray-300 mt-2">Component-level diagnosis, repair, and display modding.</p>
         <div class="mt-3"><span class="chip">Electronics</span><span class="chip">Repair</span></div></div></article>
 
-      <article class="card panel" tabindex="0" role="button" aria-haspopup="dialog" data-folder="photos/laptop" data-yt="" data-long=""><div class="ph" data-l="Image pending"><img src="photos/laptop/cover.webp" alt="Laptop restoration" draggable="false" onerror="bad(this)"></div>
-        <div class="p-4"><span class="yr">2021</span><h3 class="font-extrabold mt-3">Laptop Restoration</h3>
-        <p class="text-sm text-gray-300 mt-2">Hardware upgrades, thermal management overhaul, and system restore.</p>
+      <article class="card panel" tabindex="0" role="button" aria-haspopup="dialog" data-folder="photos/laptop" data-yt="" data-long=""><div class="ph" data-l="Image pending"><img src="photos/laptop/cover.webp" alt="Laptop modifications" draggable="false" onerror="bad(this)"></div>
+        <div class="p-4"><span class="yr">2021</span><h3 class="font-extrabold mt-3">Laptop Modifications</h3>
+        <p class="text-sm text-gray-300 mt-2">Hardware upgrades, thermal management overhaul, and system custom tuning.</p>
         <div class="mt-3"><span class="chip">Hardware</span><span class="chip">Repair</span></div></div></article>
 
       <article class="card panel" tabindex="0" role="button" aria-haspopup="dialog" data-folder="photos/oven" data-yt="" data-long=""><div class="ph" data-l="Image pending"><img src="photos/oven/cover.webp" alt="Oven repair" draggable="false" onerror="bad(this)"></div>
@@ -233,11 +233,6 @@ body.lock{overflow:hidden}
         <p class="text-sm text-gray-300 mt-2">Historical design documents, schematics, and repository backups.</p>
         <div class="mt-3"><span class="chip">Archive</span><span class="chip">Documentation</span></div></div></article>
 
-      <article class="card panel" tabindex="0" role="button" aria-haspopup="dialog" data-folder="photos/suspension" data-yt="" data-long=""><div class="ph" data-l="Image pending"><img src="photos/suspension/cover.webp" alt="Custom suspension linkages for EVs" draggable="false" onerror="bad(this)"></div>
-        <div class="p-4"><span class="yr">Personal Project</span><h3 class="font-extrabold mt-3">Custom Suspension Linkages for EVs</h3>
-        <p class="text-sm text-gray-300 mt-2">Suspension linkage designs for electric vehicles, modeled in CAD.</p>
-        <div class="mt-3"><span class="chip">Suspension</span><span class="chip">CAD</span><span class="chip">EV</span></div></div></article>
-
     </div>
   </div>
 </section>
@@ -272,7 +267,7 @@ body.lock{overflow:hidden}
       <article class="card xp panel brk p-6 flex flex-col justify-between gap-4" tabindex="0" role="button" aria-haspopup="dialog" data-folder="photos/titanium" data-yt="aOex7jNDIag XGneU7RDIpc tL2GAVqMSlI" data-long="Vice President, Mechanical Captain, and Strategy Captain. Managed design and build teams, authored 100+ pages of technical documentation, and led FDM 3D printing (Marlin/Klipper) and electrical diagnostics.">
         <div>
           <div class="w-full h-24 bg-black/40 border border-dashed border-gray-600 rounded mb-4 overflow-hidden relative" data-l="Logo pending">
-            <img src="photos/titanium/cover.webp" alt="Titanium Robotics logo" class="w-full h-full object-cover" onerror="bad(this)">
+            <img src="photos/titanium/logo.webp" alt="Titanium Robotics logo" class="w-full h-full object-cover" onerror="bad(this)">
           </div>
           <span class="yr">2020 – 2024</span>
           <h3 class="text-lg font-extrabold mt-3">Titanium Robotics (FIRST Robotics Competition)</h3>
@@ -358,7 +353,6 @@ body.lock{overflow:hidden}
 <script>
 function bad(img){
   const p = img.src;
-  // If photos/folder/cover.webp failed, try project-folder.webp fallback if root image exists
   if(p.includes('/cover.webp')){
     const folder = p.split('/photos/')[1]?.split('/cover.webp')[0];
     if(folder){
