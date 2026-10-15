@@ -46,7 +46,7 @@ a{color:inherit}
 ul.log{list-style:none;padding:0}
 ul.log li{position:relative;padding-left:1.2rem;margin:.35rem 0;color:#c4cad6;font-size:.88rem}
 ul.log li::before{content:"";position:absolute;left:0;top:.7em;width:6px;height:6px;background:var(--green)}
-.rail{display:grid;grid-auto-flow:column;grid-template-rows:repeat(2,auto);grid-auto-columns:min(340px,82vw);gap:1.25rem;overflow-x:auto;padding:1rem .25rem 1.5rem;cursor:grab;scrollbar-width:thin;scrollbar-color:var(--blue) #0d1424}
+.rail{display:grid;grid-auto-flow:column;grid-template-rows:repeat(2,auto);grid-auto-columns:min(340px,82vw);gap:1.25rem;overflow-x:auto;padding:1rem .25rem 1.5rem;cursor:grab;scrollbar-width:thin;scrollbar-color:var(--blue) #0d1424;scroll-snap-type:none}
 .rail.one{grid-template-rows:auto}
 .rail.drag{cursor:grabbing;user-select:none}
 .card{min-width:0}
@@ -457,10 +457,4 @@ async function openProject(c){
   if(t!==tok||!pm.open)return;
   $('pm-g').innerHTML=list.map((u,i)=>`<a href="${u}" target="_blank" rel="noopener"><img src="${u}" alt="${title} photo ${i+1}" loading="lazy"></a>`).join('');
 }
-document.querySelectorAll('.xp').forEach(c=>{c.addEventListener('click',()=>openProject(c));c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openProject(c)}})});
-$('pm-x').onclick=()=>pm.close();
-pm.addEventListener('click',e=>{if(e.target===pm)pm.close()});
-pm.addEventListener('close',()=>{$('pm-v').innerHTML='';document.body.classList.remove('lock')});
-</script>
-</body>
-</html>
+document.querySelectorAll('.xp').forEach(c=>{c.addEventListener('click',()=>
