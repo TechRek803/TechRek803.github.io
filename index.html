@@ -117,7 +117,7 @@ body.lock{overflow:hidden}
       <address class="panel p-6 not-italic text-sm space-y-2 break-words">
         <p><span class="mut">Phone</span><br><a class="lnk" href="tel:+16262543526">(626) 254-3526</a></p>
         <p><span class="mut">Email</span><br><a class="lnk" href="mailto:samueltrisnadi@gmail.com">samueltrisnadi@gmail.com</a></p>
-        <p><span class="mut">Location</span><br>Temple City, CA</p>
+        <p><span class="mut">Location</span><br>Los Angeles, California</p>
         <p><span class="mut">LinkedIn</span><br><a class="lnk" href="https://linkedin.com/in/samuel-trisnadi-6a59532a4/" target="_blank" rel="noopener">linkedin.com/in/samuel-trisnadi-6a59532a4/</a></p>
       </address>
     </div>
@@ -415,7 +415,7 @@ function bad(img){
 
 /* Momentum scrolling: page + rails by wheel, rails by mouse drag and arrow keys. Touch uses the device's native momentum. */
 (()=>{
-  const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches,k=reduce?1:.1;
+  const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches,k=reduce?1:.06;
   const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
   const dz=e=>e.deltaMode===1?32:e.deltaMode===2?innerHeight:1;
 
