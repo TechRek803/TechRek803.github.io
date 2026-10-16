@@ -46,7 +46,7 @@ a{color:inherit}
 ul.log{list-style:none;padding:0}
 ul.log li{position:relative;padding-left:1.2rem;margin:.35rem 0;color:#c4cad6;font-size:.88rem}
 ul.log li::before{content:"";position:absolute;left:0;top:.7em;width:6px;height:6px;background:var(--green)}
-.rail{display:grid;grid-auto-flow:column;grid-template-rows:repeat(2,auto);grid-auto-columns:min(340px,82vw);gap:1.25rem;overflow-x:hidden;padding:1rem .25rem 1.5rem;cursor:grab;touch-action:pan-y;scrollbar-width:thin;scrollbar-color:var(--blue) #0d1424}
+.rail{display:grid;grid-auto-flow:column;grid-template-rows:repeat(2,auto);grid-auto-columns:min(340px,82vw);gap:1.25rem;overflow-x:auto;padding:1rem .25rem 1.5rem;cursor:grab;scrollbar-width:thin;scrollbar-color:var(--blue) #0d1424}
 .rail.one{grid-template-rows:auto}
 .rail.drag{cursor:grabbing;user-select:none}
 .card{min-width:0;cursor:pointer}
@@ -408,72 +408,32 @@ function bad(img){
   size();frame();
 })();
 
-/* Weighted momentum scroll engine for horizontal rails */
+/* Project rail: wheel-to-horizontal, mouse drag & touch support */
 (()=>{
   document.querySelectorAll('.rail').forEach(r=>{
-    let isDown=false, startX=0, scrollLeft=0, moved=0;
-    let velocity=0, lastX=0, lastTime=0, animId=null;
-
-    function stopMomentum(){
-      if(animId){cancelAnimationFrame(animId);animId=null;}
-    }
-
     r.addEventListener('wheel',e=>{
       if(Math.abs(e.deltaX)>Math.abs(e.deltaY))return;
-      stopMomentum();
-      e.preventDefault();
-      // Weighted scroll buildup
-      r.scrollLeft += e.deltaY * 1.2;
+      const max=r.scrollWidth-r.clientWidth,up=e.deltaY<0;
+      if((!up&&r.scrollLeft<max-1)||(up&&r.scrollLeft>1)){e.preventDefault();r.scrollLeft+=e.deltaY}
     },{passive:false});
-
+    
+    let down=false,sx=0,sl=0,moved=0;
     r.addEventListener('pointerdown',e=>{
-      stopMomentum();
-      isDown=true;
       moved=0;
-      startX=e.clientX;
-      scrollLeft=r.scrollLeft;
-      lastX=e.clientX;
-      lastTime=performance.now();
-      velocity=0;
+      down=true;
+      sx=e.clientX;
+      sl=r.scrollLeft;
       r.classList.add('drag');
     });
-
     addEventListener('pointermove',e=>{
-      if(!isDown)return;
-      const x=e.clientX;
-      const now=performance.now();
-      const dt=now-lastTime;
-      const dx=x-lastX;
-      
-      moved=Math.max(moved,Math.abs(x-startX));
-      
-      if(dt>0){
-        velocity = (dx/dt)*16; // velocity scaling per frame
+      if(down){
+        moved=Math.max(moved,Math.abs(e.clientX-sx));
+        r.scrollLeft=sl-(e.clientX-sx);
       }
-      
-      lastX=x;
-      lastTime=now;
-      r.scrollLeft = scrollLeft - (x - startX);
     });
-
     addEventListener('pointerup',()=>{
-      if(!isDown)return;
-      isDown=false;
+      down=false;
       r.classList.remove('drag');
-      
-      // Apply momentum glide
-      if(Math.abs(velocity)>0.5){
-        function step(){
-          velocity *= 0.93; // friction/drag weight factor
-          r.scrollLeft -= velocity;
-          if(Math.abs(velocity)>0.1){
-            animId = requestAnimationFrame(step);
-          } else {
-            animId = null;
-          }
-        }
-        animId = requestAnimationFrame(step);
-      }
     });
 
     r.addEventListener('click',e=>{
@@ -488,8 +448,8 @@ function bad(img){
         e.preventDefault();
         openProject(e.target);
       }
-      if(e.key==='ArrowRight'){stopMomentum();r.scrollLeft+=300;}
-      if(e.key==='ArrowLeft'){stopMomentum();r.scrollLeft-=300;}
+      if(e.key==='ArrowRight')r.scrollLeft+=300;
+      if(e.key==='ArrowLeft')r.scrollLeft-=300;
     });
   });
 })();
