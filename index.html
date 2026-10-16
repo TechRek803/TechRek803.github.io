@@ -12,7 +12,7 @@
 <script src="https://cdn.tailwindcss.com/3.4.17"></script>
 <style>
 :root{--bg:#0a0a0a;--panel:rgba(9,16,34,.78);--blue:#1a56db;--blue-hi:#3b7bff;--navy:#0b1f4d;--green:#1fdc7a;--line:#16254a;--txt:#f5f7fa;--mut:#8b95a7}
-html{scroll-behavior:smooth;scroll-padding-top:64px}
+html{scroll-behavior:auto;scroll-padding-top:64px}
 body{background:var(--bg);color:var(--txt);font-family:'JetBrains Mono',ui-monospace,Menlo,monospace;line-height:1.65;-webkit-font-smoothing:antialiased}
 h1,h2,h3,.hd{font-family:'Orbitron','Segoe UI',system-ui,sans-serif;letter-spacing:.02em}
 #bg{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
@@ -37,7 +37,7 @@ a{color:inherit}
 .btn-solid:hover{background:var(--blue-hi);box-shadow:0 0 22px rgba(59,123,255,.5)}
 .btn-ghost{color:var(--green);border-color:var(--green);background:transparent}
 .btn-ghost:hover{background:rgba(31,220,122,.1);box-shadow:0 0 18px rgba(31,220,122,.3)}
-.photo{width:min(300px,70vw);aspect-ratio:4/5;background:linear-gradient(160deg,var(--navy),#060b18);overflow:hidden;display:grid;place-items:center}
+.photo{width:min(300px,70vw);aspect-ratio:4/5;border:2px solid var(--blue-hi);box-shadow:0 0 28px rgba(59,123,255,.3);background:linear-gradient(160deg,var(--navy),#060b18);overflow:hidden;display:grid;place-items:center}
 .photo img{width:100%;height:100%;object-fit:cover}
 .noimg::after{content:attr(data-l);position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:1rem;color:var(--mut);font-size:.75rem}
 .mut{color:var(--mut)}
@@ -46,9 +46,14 @@ a{color:inherit}
 ul.log{list-style:none;padding:0}
 ul.log li{position:relative;padding-left:1.2rem;margin:.35rem 0;color:#c4cad6;font-size:.88rem}
 ul.log li::before{content:"";position:absolute;left:0;top:.7em;width:6px;height:6px;background:var(--green)}
-.rail{display:grid;grid-auto-flow:column;grid-template-rows:repeat(2,auto);grid-auto-columns:min(340px,82vw);gap:1.25rem;overflow-x:auto;padding:1rem .25rem 1.5rem;cursor:grab;scrollbar-width:thin;scrollbar-color:var(--blue) #0d1424}
+.rail{display:grid;grid-auto-flow:column;grid-template-rows:repeat(2,auto);grid-auto-columns:min(340px,82vw);gap:1.25rem;overflow-x:auto;padding:1rem .25rem 1.5rem;cursor:grab;overscroll-behavior-x:contain}
 .rail.one{grid-template-rows:auto}
 .rail.drag{cursor:grabbing;user-select:none}
+.rail::-webkit-scrollbar{height:12px}
+.rail::-webkit-scrollbar-track{background:#0d1424;border:1px solid var(--line);border-radius:6px}
+.rail::-webkit-scrollbar-thumb{background:var(--blue);border-radius:6px}
+.rail::-webkit-scrollbar-thumb:hover{background:var(--blue-hi)}
+@supports not selector(::-webkit-scrollbar){.rail{scrollbar-width:auto;scrollbar-color:var(--blue) #0d1424}}
 .card{min-width:0;cursor:pointer}
 .ph{position:relative;aspect-ratio:16/10;background:linear-gradient(135deg,var(--navy),#060b18);border-bottom:1px solid var(--line);overflow:hidden}
 .ph img{width:100%;height:100%;object-fit:cover;display:block}
@@ -408,48 +413,79 @@ function bad(img){
   size();frame();
 })();
 
-/* Project rail: wheel-to-horizontal, mouse drag & touch support */
+/* Momentum scrolling: page + rails by wheel, rails by mouse drag and arrow keys. Touch uses the device's native momentum. */
 (()=>{
+  const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches,k=reduce?1:.1;
+  const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+  const dz=e=>e.deltaMode===1?32:e.deltaMode===2?innerHeight:1;
+
+  /* page */
+  let cur=0,tgt=0,raf=0;
+  const pmax=()=>document.documentElement.scrollHeight-innerHeight;
+  function ptick(){cur+=(tgt-cur)*k;if(Math.abs(tgt-cur)<.5){cur=tgt;raf=0}else raf=requestAnimationFrame(ptick);scrollTo(0,cur)}
+  function pgo(t){tgt=clamp(t,0,pmax());if(!raf){cur=scrollY;raf=requestAnimationFrame(ptick)}}
+  addEventListener('wheel',e=>{
+    if(e.defaultPrevented||e.ctrlKey||document.querySelector('dialog[open]')||Math.abs(e.deltaX)>Math.abs(e.deltaY))return;
+    e.preventDefault();pgo((raf?tgt:scrollY)+e.deltaY*dz(e));
+  },{passive:false});
+  const halt=()=>{cancelAnimationFrame(raf);raf=0};
+  addEventListener('pointerdown',halt,{passive:true});
+  addEventListener('keydown',halt,{passive:true});
+  document.addEventListener('click',e=>{
+    const a=e.target.closest('a[href^="#"]');if(!a)return;
+    const id=a.getAttribute('href').slice(1),el=id?document.getElementById(id):null;
+    if(id&&!el)return;
+    e.preventDefault();pgo(el?el.getBoundingClientRect().top+scrollY-64:0);
+  });
+
+  /* rails */
   document.querySelectorAll('.rail').forEach(r=>{
+    let c=0,t=0,w=0,i=0,down=false,sx=0,sl=0,moved=0,lx=0,lt=0,v=0;
+    const max=()=>r.scrollWidth-r.clientWidth;
+    const stop=()=>{cancelAnimationFrame(w);cancelAnimationFrame(i);w=i=0};
+    function tick(){c+=(t-c)*k;if(Math.abs(t-c)<.5){c=t;w=0}else w=requestAnimationFrame(tick);r.scrollLeft=c}
+    function go(x){t=clamp(x,0,max());if(!w){c=r.scrollLeft;w=requestAnimationFrame(tick)}}
+
     r.addEventListener('wheel',e=>{
-      if(Math.abs(e.deltaX)>Math.abs(e.deltaY))return;
-      const max=r.scrollWidth-r.clientWidth,up=e.deltaY<0;
-      if((!up&&r.scrollLeft<max-1)||(up&&r.scrollLeft>1)){e.preventDefault();r.scrollLeft+=e.deltaY}
+      if(e.ctrlKey||Math.abs(e.deltaX)>Math.abs(e.deltaY))return;
+      const base=w?t:r.scrollLeft,up=e.deltaY<0;
+      if((!up&&base<max()-1)||(up&&base>1)){e.preventDefault();cancelAnimationFrame(i);i=0;go(base+e.deltaY*dz(e))}
     },{passive:false});
-    
-    let down=false,sx=0,sl=0,moved=0;
+
     r.addEventListener('pointerdown',e=>{
-      moved=0;
-      down=true;
-      sx=e.clientX;
-      sl=r.scrollLeft;
-      r.classList.add('drag');
+      stop();moved=0;
+      if(e.pointerType!=='mouse'||e.button!==0)return;
+      down=true;sx=lx=e.clientX;sl=r.scrollLeft;lt=performance.now();v=0;r.classList.add('drag');
     });
     addEventListener('pointermove',e=>{
-      if(down){
-        moved=Math.max(moved,Math.abs(e.clientX-sx));
-        r.scrollLeft=sl-(e.clientX-sx);
-      }
+      if(!down)return;
+      const now=performance.now(),dt=now-lt;
+      moved=Math.max(moved,Math.abs(e.clientX-sx));
+      r.scrollLeft=sl-(e.clientX-sx);
+      if(dt>0){v=.7*v+.3*((lx-e.clientX)/dt);lx=e.clientX;lt=now}
     });
-    addEventListener('pointerup',()=>{
-      down=false;
-      r.classList.remove('drag');
-    });
+    const end=()=>{
+      if(!down)return;
+      down=false;r.classList.remove('drag');
+      if(reduce||moved<6||performance.now()-lt>90)return;
+      let t0=performance.now();
+      const fl=n=>{
+        const dt=n-t0,before=r.scrollLeft;t0=n;
+        r.scrollLeft=before+v*dt;v*=Math.pow(.95,dt/16.7);
+        i=(Math.abs(v)>.03&&r.scrollLeft!==before)?requestAnimationFrame(fl):0;
+      };
+      i=requestAnimationFrame(fl);
+    };
+    addEventListener('pointerup',end);
+    addEventListener('pointercancel',end);
 
     r.addEventListener('click',e=>{
-      const c=e.target.closest('.card');
-      if(c&&moved<8){
-        openProject(c);
-      }
+      const card=e.target.closest('.card');
+      if(card&&moved<8)openProject(card);
     });
-
     r.addEventListener('keydown',e=>{
-      if((e.key==='Enter'||e.key===' ')&&e.target.classList.contains('card')){
-        e.preventDefault();
-        openProject(e.target);
-      }
-      if(e.key==='ArrowRight')r.scrollLeft+=300;
-      if(e.key==='ArrowLeft')r.scrollLeft-=300;
+      if((e.key==='Enter'||e.key===' ')&&e.target.classList.contains('card')){e.preventDefault();openProject(e.target)}
+      if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();stop();go((w?t:r.scrollLeft)+(e.key==='ArrowRight'?300:-300))}
     });
   });
 })();
