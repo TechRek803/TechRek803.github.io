@@ -95,8 +95,8 @@ body.lock{overflow:hidden}
       </div>
     </div>
     <div class="flex md:justify-end">
-      <div class="panel brk photo" data-l="Drop your photo here as profile.webp">
-        <img src="profile.webp" alt="Profile Placeholder" onerror="bad(this)">
+      <div class="panel brk photo" data-l="Drop your photo here as photos/profile.webp">
+        <img src="photos/profile.webp" alt="Profile Placeholder" onerror="badProfile(this)">
       </div>
     </div>
   </div>
@@ -346,6 +346,15 @@ body.lock{overflow:hidden}
 </dialog>
 
 <script>
+function badProfile(img){
+  if(img.src.includes('photos/profile.webp')){
+    img.src = 'profile.webp';
+    return;
+  }
+  img.style.display='none';
+  img.parentElement.classList.add('noimg');
+}
+
 function bad(img){
   const p = img.src;
   if(p.includes('/cover.webp')){
